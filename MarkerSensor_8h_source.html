@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NUAA RoboMaster Vision Project: MarkerSensor.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NUAA RoboMaster Vision Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">MarkerSensor.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MARKERSSENSOR_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MARKERSSENSOR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include&lt;map&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;numeric&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//Eigen头文件必须在opencv2/core/eigen.hpp前</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include&lt;Eigen/Core&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;opencv4/opencv2/opencv.hpp&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;opencv2/core/ocl.hpp&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;opencv2/core/core.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;opencv2/core/eigen.hpp&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;opencv2/highgui/highgui.hpp&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;opencv2/imgproc/imgproc.hpp&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include&lt;opencv2/calib3d/calib3d.hpp&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;MarkerParams.h&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;tf/tf.h&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">//timer</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">//#include &quot;timer.h&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">using namespace </span>cv;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classRotRect.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classRotRect.html">RotRect</a> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    cv::Point2f center;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    cv::Point2f dir;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">float</span> width;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">float</span> height;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="classRotRect.html">RotRect</a>() : width(0), height(0) {};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="classRotRect.html">RotRect</a>(<span class="keyword">const</span> cv::Rect &amp; rect) :</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        width(rect.width), height(rect.height)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        center.x = rect.x + rect.width*0.5f;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        center.y = rect.y + rect.height*0.5f;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        dir.x = 1;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        dir.y = 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMarker.html">   48</a></span><span class="keyword">class </span><a class="code hl_class" href="classMarker.html">Marker</a> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_class" href="classMarker.html">Marker</a>()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    old_depth=0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    depth=0;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">enum</span> MarkerType </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    All = 0,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    SMALL= 1,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    BIG=2</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    };</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">int</span> ComputeKeyPoints();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> ComputeBBox()</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">float</span> max_x = 0, max_y = 0;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">float</span> min_x = 9999, min_y = 9999;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; i++)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            Point2f kpt = kpts[i];          <span class="comment">// may be wrong</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">if</span> (kpt.x &lt; min_x)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                min_x = kpt.x;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">if</span> (kpt.x &gt; max_x) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                max_x = kpt.x;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">if</span> (kpt.y &lt; min_y) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                min_y = kpt.y;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> (kpt.y &gt; max_y) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                max_y = kpt.y;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        bbox.x = min_x;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        bbox.y = min_y;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        bbox.width = (max_x - min_x);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        bbox.height = (max_y - min_y);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">int</span> Draw(Mat &amp; img) </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        ComputeKeyPoints();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        cv::line(img, kpts[0], kpts[1], cv::Scalar(255, 0, 0), 3);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        cv::line(img, kpts[1], kpts[2], cv::Scalar(0, 255, 0), 3);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        cv::line(img, kpts[2], kpts[3], cv::Scalar(0, 0, 255), 3);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        cv::line(img, kpts[3], kpts[0], cv::Scalar(255, 255, 0), 3);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_class" href="classRotRect.html">RotRect</a>   LEDs[2];</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    Point2f kpts[4];</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    Point2f num_kpts[4];</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    Rect bbox;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">int</span> number;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">float</span> R;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">float</span> decision_points;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">float</span>   old_depth, depth;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    MarkerType armor_type;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classMarkSensor.html">  116</a></span><span class="keyword">class </span><a class="code hl_class" href="classMarkSensor.html">MarkSensor</a> {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>public :</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">enum</span> SensorStatus </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    STATUS_SUCCESS = 0,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    STATUS_TRACKING,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    STATUS_TRACKLOST0,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    STATUS_TRACKLOST1,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    STATUS_TRACKLOST2,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    STATUS_DETECTING,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    STATUS_TOP_REDETECT</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    };</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>   <span class="keyword">enum</span> EnemyStatus</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    STATIC_POS = 0,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    MOVING= 1,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    SWAGGING=2,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    ROTATING=3</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    };</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_function" href="classMarkSensor.html#a3b7fe57029702ee7376774bcea013622">MarkSensor</a>(AlgoriParam &amp;ap_,CamParams &amp;cp_, MarkerParams &amp;mp_);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMarkSensor.html#abe564a1605c74a6ab2fcb195f81123eb">ModeUpdate</a>();</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#ab565ed71c479f3054e1206e7a19f32ca">ProcessFrameLEDXYZ</a>(Mat &amp; img, <span class="keywordtype">int</span>&amp; z,  <span class="keywordtype">int</span>&amp; x, <span class="keywordtype">int</span>&amp; y);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a63e0706f34a9a7f2736f585b95b32c2b">DetectLEDMarker</a>(Mat &amp;img, <a class="code hl_class" href="classMarker.html">Marker</a> &amp;res_marker);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a99d580706fc86e5c8a3726a7a5de1719">TrackLEDMarker</a>(<span class="keyword">const</span> Mat &amp;img, <a class="code hl_class" href="classMarker.html">Marker</a> &amp;res_marker);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    Point2i top_center;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    Rect top_ROI;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    Point2f top_marker_center, last_top_marker_center;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">float</span> top_depth;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_class" href="classMarker.html">Marker</a> topMarker;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    Rect fakeTopMkr;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#aab55650e7eefc48ecb1a816a71a44c01">GetTopPos</a>(Mat &amp; img, <span class="keywordtype">int</span> &amp;x, <span class="keywordtype">int</span> &amp;y, <span class="keywordtype">int</span>&amp; z);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a1bed7c7462238568614c82a61dd8f613">DetectTopCenter</a>(Mat &amp;img, Rect&amp; ROI, Point2i&amp; res_point, <a class="code hl_class" href="classMarker.html">Marker</a>&amp; top_marker);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a44725d50ec18aafa961f8016a147838b">TrackTopCenter</a>(<span class="keyword">const</span> Mat &amp;img, Rect&amp; ROI, Point2i&amp; res_point, <a class="code hl_class" href="classMarker.html">Marker</a>&amp; top_marker);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a15fb66c129dea9b5ef802be26175ac4b">GetLEDMarker</a>(cv::Mat &amp;roi_mask, <a class="code hl_class" href="classMarker.html">Marker</a> &amp;res_marker);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a15fb66c129dea9b5ef802be26175ac4b">GetLEDMarker</a>(cv::Mat &amp;roi_mask, vector &lt;RotRect &gt;&amp; LEDs, <a class="code hl_class" href="classMarker.html">Marker</a> &amp;res_marker);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a7c8ff0cebb96d2ecb595b3e5323ae52c">GetLEDStrip</a>(cv::Mat &amp;roi_mask, vector &lt;RotRect &gt;&amp; LEDs);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a8373065d24cd75dc8e37ae15ce065992">PCALEDStrip</a>(vector&lt;cv::Point&gt; &amp;contour, <a class="code hl_class" href="classRotRect.html">RotRect</a> &amp; LED);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMarkSensor.html#aa5b4ccdf74e269bcaeccfca0a0ea0e78">ComputeLengthAlongDir</a>(vector&lt;cv::Point&gt; &amp;contour, cv::Point2f &amp;dir);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a1572e8119d0ff47eaaf23750229aeb66">paraDistance</a>(<a class="code hl_class" href="classRotRect.html">RotRect</a> &amp;LED1, <a class="code hl_class" href="classRotRect.html">RotRect</a> &amp;LED2);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a96f965e9d5d6aa0df762e93a31bf9059">tgt_selector</a>(vector&lt;Marker&gt; &amp;markers);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a619494f85f13bafdffb0a8f359d4646e">FindLowestHP</a>(vector&lt;Marker&gt; &amp;markers);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">float</span> calcDepth(<a class="code hl_class" href="classMarker.html">Marker</a> &amp;marker);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordtype">float</span> calcDepth(<a class="code hl_class" href="classRotRect.html">RotRect</a> &amp;res_LED);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMarkSensor.html#a2d384c5a2f81593eb6fc0b989aab9215">bgr2binary</a>(Mat &amp;srcImg, Mat &amp;img_out,<span class="keywordtype">int</span> method);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMarkSensor.html#aff99f7a54cb86bfd774f58f11fbafc74">NumberDis</a>(<a class="code hl_class" href="classMarker.html">Marker</a>&amp; marker);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    AlgoriParam ap;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    CamParams cp;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    MarkerParams mp;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    FilterOutStep *jump_filter;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    Mat cameraMatrix;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    Mat OptcameraMatrix;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    Mat distCoeffs;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    SensorStatus status= STATUS_DETECTING;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    EnemyStatus enemyStatus=MOVING;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <a class="code hl_class" href="classMarker.html">Marker</a> marker;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    Mat img_gray, img_bgr, img_hsv, img_h, led_mask,img_out;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">static</span> Mat img_show, ROI_bgr, coordinate, NUM_bgr, Image;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    Point2f last_target, target;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    vector&lt;Mat&gt; templates;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    map&lt;int,int&gt; HP;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">int</span> track_fail_cnt[3];</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    tf::Transform trans;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">bool</span> got_trans=<span class="keyword">false</span>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    tf::Vector3 pos_t2w;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    tf::Vector3 pos_t2c;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">//for motion analyse</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">float</span> disBetweenRecg;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">float</span> dis_mean;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">float</span> dis_var;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">float</span> topThres=5;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">float</span> switchThres=20;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">int</span> disListBufSize=200;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    vector&lt;float&gt; dis_list;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="comment">//for calc angle(via solvePnP)</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    vector&lt;Point3d&gt; big_armor;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    vector&lt;Point3d&gt; small_armor;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    vector&lt;Point2f&gt; img_points;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    Mat rvec,tvec;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">double</span> armor_x,armor_y,armor_z;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">int</span> center_in_rect;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    ros::Time imgTime;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>};</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keywordtype">void</span> limitRect(Rect &amp;location, Size sz);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassMarkSensor_html"><div class="ttname"><a href="classMarkSensor.html">MarkSensor</a></div><div class="ttdef"><b>Definition:</b> MarkerSensor.h:116</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a1572e8119d0ff47eaaf23750229aeb66"><div class="ttname"><a href="classMarkSensor.html#a1572e8119d0ff47eaaf23750229aeb66">MarkSensor::paraDistance</a></div><div class="ttdeci">int paraDistance(RotRect &amp;LED1, RotRect &amp;LED2)</div><div class="ttdoc">MarkSensor::paraDistance 计算两平行灯条间的距离</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:204</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a15fb66c129dea9b5ef802be26175ac4b"><div class="ttname"><a href="classMarkSensor.html#a15fb66c129dea9b5ef802be26175ac4b">MarkSensor::GetLEDMarker</a></div><div class="ttdeci">int GetLEDMarker(cv::Mat &amp;roi_mask, Marker &amp;res_marker)</div><div class="ttdoc">MarkSensor::GetLEDMarker 在图像中识别装甲</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:495</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a1bed7c7462238568614c82a61dd8f613"><div class="ttname"><a href="classMarkSensor.html#a1bed7c7462238568614c82a61dd8f613">MarkSensor::DetectTopCenter</a></div><div class="ttdeci">int DetectTopCenter(Mat &amp;img, Rect &amp;ROI, Point2i &amp;res_point, Marker &amp;top_marker)</div><div class="ttdoc">MarkSensor::DetectTopCenter 反陀螺模式，识别陀螺</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:1074</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a2d384c5a2f81593eb6fc0b989aab9215"><div class="ttname"><a href="classMarkSensor.html#a2d384c5a2f81593eb6fc0b989aab9215">MarkSensor::bgr2binary</a></div><div class="ttdeci">int bgr2binary(Mat &amp;srcImg, Mat &amp;img_out, int method)</div><div class="ttdoc">MarkSensor::bgr2binary 图像二值化</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:100</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a3b7fe57029702ee7376774bcea013622"><div class="ttname"><a href="classMarkSensor.html#a3b7fe57029702ee7376774bcea013622">MarkSensor::MarkSensor</a></div><div class="ttdeci">MarkSensor(AlgoriParam &amp;ap_, CamParams &amp;cp_, MarkerParams &amp;mp_)</div><div class="ttdoc">Construct a new Mark Sensor:: Mark Sensor object MarkSensor构造函数</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:49</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a44725d50ec18aafa961f8016a147838b"><div class="ttname"><a href="classMarkSensor.html#a44725d50ec18aafa961f8016a147838b">MarkSensor::TrackTopCenter</a></div><div class="ttdeci">int TrackTopCenter(const Mat &amp;img, Rect &amp;ROI, Point2i &amp;res_point, Marker &amp;top_marker)</div><div class="ttdoc">MarkSensor::TrackTopCenter 反陀螺模式，追踪</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:1129</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a619494f85f13bafdffb0a8f359d4646e"><div class="ttname"><a href="classMarkSensor.html#a619494f85f13bafdffb0a8f359d4646e">MarkSensor::FindLowestHP</a></div><div class="ttdeci">int FindLowestHP(vector&lt; Marker &gt; &amp;markers)</div><div class="ttdoc">MarkSensor::FindLowestHP 确定识别到的所有装甲中血量最低的目标</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:295</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a63e0706f34a9a7f2736f585b95b32c2b"><div class="ttname"><a href="classMarkSensor.html#a63e0706f34a9a7f2736f585b95b32c2b">MarkSensor::DetectLEDMarker</a></div><div class="ttdeci">int DetectLEDMarker(Mat &amp;img, Marker &amp;res_marker)</div><div class="ttdoc">MarkSensor::DetectLEDMarker 识别装甲板（对相机得到的全图做处理）</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:731</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a7c8ff0cebb96d2ecb595b3e5323ae52c"><div class="ttname"><a href="classMarkSensor.html#a7c8ff0cebb96d2ecb595b3e5323ae52c">MarkSensor::GetLEDStrip</a></div><div class="ttdeci">int GetLEDStrip(cv::Mat &amp;roi_mask, vector&lt; RotRect &gt; &amp;LEDs)</div><div class="ttdoc">MarkSensor::GetLEDStrip 在图像中识别灯条</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:450</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a8373065d24cd75dc8e37ae15ce065992"><div class="ttname"><a href="classMarkSensor.html#a8373065d24cd75dc8e37ae15ce065992">MarkSensor::PCALEDStrip</a></div><div class="ttdeci">int PCALEDStrip(vector&lt; cv::Point &gt; &amp;contour, RotRect &amp;LED)</div><div class="ttdoc">MarkSensor::PCALEDStrip 将边缘（vector&lt;Point&gt;）转换为自定义的LED灯条（RotRect）结构</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:144</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a96f965e9d5d6aa0df762e93a31bf9059"><div class="ttname"><a href="classMarkSensor.html#a96f965e9d5d6aa0df762e93a31bf9059">MarkSensor::tgt_selector</a></div><div class="ttdeci">int tgt_selector(vector&lt; Marker &gt; &amp;markers)</div><div class="ttdoc">MarkSensor::tgt_selector 计算装甲板权重，在识别到多个装甲时决定击打目标</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:343</div></div>
+<div class="ttc" id="aclassMarkSensor_html_a99d580706fc86e5c8a3726a7a5de1719"><div class="ttname"><a href="classMarkSensor.html#a99d580706fc86e5c8a3726a7a5de1719">MarkSensor::TrackLEDMarker</a></div><div class="ttdeci">int TrackLEDMarker(const Mat &amp;img, Marker &amp;res_marker)</div><div class="ttdoc">MarkSensor::TrackLEDMarker 跟踪装甲板（对相机得到的全图做ROI再处理）</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:755</div></div>
+<div class="ttc" id="aclassMarkSensor_html_aa5b4ccdf74e269bcaeccfca0a0ea0e78"><div class="ttname"><a href="classMarkSensor.html#aa5b4ccdf74e269bcaeccfca0a0ea0e78">MarkSensor::ComputeLengthAlongDir</a></div><div class="ttdeci">float ComputeLengthAlongDir(vector&lt; cv::Point &gt; &amp;contour, cv::Point2f &amp;dir)</div><div class="ttdoc">MarkSensor::ComputeLengthAlongDir 计算灯条长度</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:183</div></div>
+<div class="ttc" id="aclassMarkSensor_html_aab55650e7eefc48ecb1a816a71a44c01"><div class="ttname"><a href="classMarkSensor.html#aab55650e7eefc48ecb1a816a71a44c01">MarkSensor::GetTopPos</a></div><div class="ttdeci">int GetTopPos(Mat &amp;img, int &amp;x, int &amp;y, int &amp;z)</div><div class="ttdoc">MarkSensor::GetTopPos 反陀螺入口</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:1324</div></div>
+<div class="ttc" id="aclassMarkSensor_html_ab565ed71c479f3054e1206e7a19f32ca"><div class="ttname"><a href="classMarkSensor.html#ab565ed71c479f3054e1206e7a19f32ca">MarkSensor::ProcessFrameLEDXYZ</a></div><div class="ttdeci">int ProcessFrameLEDXYZ(Mat &amp;img, int &amp;z, int &amp;x, int &amp;y)</div><div class="ttdoc">MarkSensor::ProcessFrameLEDXYZ 自瞄功能入口，包括普通自瞄和反陀螺</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:853</div></div>
+<div class="ttc" id="aclassMarkSensor_html_abe564a1605c74a6ab2fcb195f81123eb"><div class="ttname"><a href="classMarkSensor.html#abe564a1605c74a6ab2fcb195f81123eb">MarkSensor::ModeUpdate</a></div><div class="ttdeci">void ModeUpdate()</div><div class="ttdoc">MarkSensor::ModeUpdate 自动模式切换，切换小陀螺和普通自瞄，用于哨兵，改变当前MarkSensor::enemyStatus</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:817</div></div>
+<div class="ttc" id="aclassMarkSensor_html_aff99f7a54cb86bfd774f58f11fbafc74"><div class="ttname"><a href="classMarkSensor.html#aff99f7a54cb86bfd774f58f11fbafc74">MarkSensor::NumberDis</a></div><div class="ttdeci">void NumberDis(Marker &amp;marker)</div><div class="ttdoc">MarkSensor::NumberDis 识别装甲版上的数字，结果存放在Marker对象的no成员中</div><div class="ttdef"><b>Definition:</b> MarkSensor.cpp:221</div></div>
+<div class="ttc" id="aclassMarker_html"><div class="ttname"><a href="classMarker.html">Marker</a></div><div class="ttdef"><b>Definition:</b> MarkerSensor.h:49</div></div>
+<div class="ttc" id="aclassRotRect_html"><div class="ttname"><a href="classRotRect.html">RotRect</a></div><div class="ttdef"><b>Definition:</b> MarkerSensor.h:30</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>
